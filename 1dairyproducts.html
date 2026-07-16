@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Products - GROCERY STORE</title>
+    <!--Code for Font awesome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Code for Font awesome cdn-->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--Code for linking css-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!--Code for linking css-->
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+</head>
+<body>
+    <!--Header Section-->
+    <header class="header">
+        <a href="index.html" class="logo"><i class="fa fa-shopping-basket"></i>grocery</a>
+        <nav class="navbar">
+            <a href="index.html#home">home</a>
+            <a href="index.html#features">features</a>
+            <a href="index.html#products">products</a>
+            <a href="index.html#categories">categories</a>
+            <a href="index.html#review">review</a>
+        </nav>
+        <div class="icons">
+            <div class="fa fa-bars" id="menue-btn"></div>
+            <div class="fa fa-search" id="search-btn"></div>
+            <div class="fa fa-shopping-cart" id="cart-btn"></div>
+            <div class="fa fa-user" id="login-btn"></div>
+        </div>
+
+        <form class="search-form">
+            <input type="search" id="search-box" placeholder="Search Here .....">
+            <label for="search-box" class="fa fa-search"></label>
+        </form>
+
+        <div class="shopping-cart">
+        </div>
+
+        <div class="login-form">
+            <h3>login now</h3>
+            <input type="email" placeholder=" your email" class="box">
+            <input type="password" placeholder=" your password" class="box">
+            <p>forget your password<a href="#">click here</a></p>
+            <p>don't have an account<a href="#">create now</a></p>
+            <input type="submit" value="login now" class="btn">
+        </div>
+    </header>
+    <!--Header Section-->
+
+    <!--banner section-->
+    <section class="dairy-banner" id="home"> 
+        <div class="content">
+            <h3>Fresh Dairy Products</h3>
+            <p>Discover our wide range of fresh dairy products</p>
+            <a href="#products" class="btn">shop now</a>
+        </div>
+    </section>
+    <!--banner section-->
+
+    <!--product section--> 
+    <section class="products" id="products">
+        <h1 class="heading"> <span>dairy products</span></h1>
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                <!-- Products will be loaded dynamically from Supabase -->
+            </div>
+        </div>
+    </section>
+
+    <!--footer section--> 
+    <section class="footer" id="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>groco<i class="fa fa-shopping-basket"></i></h3>
+                <p>Your one-stop shop for all grocery needs</p>
+                <div class="share">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact information</h3>
+                <a href="#" class="links"><i class="fa fa-phone"></i>39626559560</a>
+                <a href="#" class="links"><i class="fa fa-envelope"></i>ak@gmail.com</a>
+                <a href="#" class="links"><i class="fa fa-map-marker"></i>sangli</a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="index.html#home" class="links"><i class="fa fa-arrow-right"></i>home</a>
+                <a href="index.html#features" class="links"><i class="fa fa-arrow-right"></i>features</a>
+                <a href="index.html#products" class="links"><i class="fa fa-arrow-right"></i>product</a>
+                <a href="index.html#categories" class="links"><i class="fa fa-arrow-right"></i>categories</a>
+                <a href="index.html#review" class="links"><i class="fa fa-arrow-right"></i>review</a>
+            </div>
+        </div>
+    </section>
+    <!--footer section--> 
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Supabase Client Setup -->
+    <script src="js/supabaseClient.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

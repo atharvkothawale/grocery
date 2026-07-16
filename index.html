@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROCERY STORE</title>
+    <!--Code for Font awesome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Code for Font awesome cdn-->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--Code for linking css-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!--Code for linking css-->
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+</head>
+<body>
+    <!-- Popup Structure -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h2 id="popupTitle">Feature Details</h2>
+            <div id="popupDescription"></div>
+        </div>
+    </div>
+
+    <!--Header Section-->
+    <header class="header">
+        <a href="#" class="logo"><i class="fa fa-shopping-basket"></i>grocery</a>
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#features">features</a>
+            <a href="#products">products</a>
+            <a href="#categories">categories</a>
+            <a href="#review">review</a>
+        </nav>
+        <div class="icons">
+            <div class="fa fa-bars" id="menue-btn"></div>
+            <div class="fa fa-search" id="search-btn"></div>
+            <div class="fa fa-shopping-cart" id="cart-btn"></div>
+            <div class="fa fa-user" id="login-btn"></div>
+        </div>
+
+        <form class="search-form">
+            <input type="search" id="search-box" placeholder="Search Here .....">
+            <label for="search-box" class="fa fa-search"></label>
+        </form>
+
+        <div class="shopping-cart">
+        </div>
+
+        <div class="login-form">
+            <h3>login now</h3>
+            <input type="email" placeholder=" your email" class="box">
+            <input type="password" placeholder=" your password" class="box">
+            <p>forget your password<a href="#">click here</a></p>
+            <p>don't have an account<a href="#">create now</a></p>
+            <input type="submit" value="login now" class="btn">
+        </div>
+    </header>
+    <!--Header Section-->
+
+    <!--banner section-->
+    <section class="home" id="home"> 
+        <div class="content">
+            <h3>Fresh and Quality product for you</h3>
+            <p>Your one-stop shop for all grocery needs</p>
+            <a href="#categories" class="btn">shop now</a>
+        </div>
+    </section>
+    <!--banner section-->
+
+    <!--feature section-->
+    <section class="features" id="features">
+        <h1 class="heading">our <span>features</span></h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="image/feature-img-1.png">
+                <h3>Fresh product</h3>
+                <p>we will provide the fresh product to you</p>
+                <a href="#" class="btn read-more" data-title="Fresh Products" data-description="We source our products directly from local farmers and trusted suppliers to ensure maximum freshness. Our quality control team checks each product before it reaches our shelves. We guarantee that all our products are fresh and of the highest quality.">read more</a>
+            </div>
+   
+            <div class="box">
+                <img src="image/feature-img-2.png">
+                <h3>home delivery avilable</h3>
+                <p>we will provide home delivery ant minimal cost or free</p>
+                <a href="#" class="btn read-more" data-title="Home Delivery" data-description="Enjoy the convenience of home delivery with our fast and reliable service. We offer free delivery on orders above Rs. 500. Our delivery team ensures your products reach you fresh and on time. Delivery slots are available throughout the day.">read more</a>
+            </div>
+   
+            <div class="box">
+                <img src="image/feature-img-3.png">
+                <h3>easy payment</h3>
+                <p>we have easy payment options</p>
+                <a href="#" class="btn read-more" data-title="Easy Payment" data-description="We accept multiple payment methods including cash on delivery, credit/debit cards, UPI, and digital wallets. Our secure payment gateway ensures your transactions are safe. You can also save your payment details for faster checkout.">read more</a>
+            </div>
+        </div>
+    </section>
+    <!--feature section-->
+
+    <!--product section--> 
+    <section class="products" id="products">
+        <h1 class="heading">top <span>buy's</span></h1>
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                <!-- Products will be loaded dynamically from Supabase -->
+            </div>
+        </div>
+    </section>
+    <!--product section-->
+
+    <!--Categories section--> 
+    <section class="categories" id="categories">
+        <h1 class="heading">product <span>Categories</span></h1>
+        <div class="box-container">
+            <div class="box">
+                <center>
+                    <img src="image/dairycat1.jpeg">
+                    <h3>dairy products</h3>
+                    <a href="1dairyproducts.html" class="btn">shop now</a>
+                </center>
+            </div>
+
+            <div class="box">
+                <center>
+                    <img src="image/biscutcat2.jpeg">
+                    <h3>bakery procucts</h3>
+                    <a href="2biscut.html" class="btn">shop now</a>
+                </center>
+            </div>
+            
+            <div class="box">
+                <center>
+                    <img src="image/powdercat3.webp">
+                    <h3>beverages</h3>
+                    <a href="3powder.html" class="btn">shop now</a>
+                </center>
+            </div>
+
+            <div class="box">
+                <center>
+                    <img src="image/bathingsoapcat4.webp">
+                    <h3>bathing soap</h3>
+                    <a href="4bathingsoap.html" class="btn">shop now</a>
+                </center>
+            </div>
+
+            <div class="box">
+                <center>
+                    <img src="image/cleaningcat5.jpeg">
+                    <h3>cleaning</h3>
+                    <a href="5cleaning.html" class="btn">shop now</a>
+                </center>
+            </div>
+
+            <div class="box">
+                <center>
+                    <img src="image/hair.jpg">
+                    <h3>Hair care</h3>
+                    <a href="6shampoo.html" class="btn">shop now</a>
+                </center>
+            </div>
+
+            <div class="box">
+                <center>
+                    <img src="image/cereals-cat7.webp">
+                    <h3>cereals</h3>
+                    <a href="7cereles.html" class="btn">shop now</a>
+                </center>
+            </div>
+        
+            <div class="box">
+                <center>
+                    <img src="image/stationery cat8.jpg">
+                    <h3>stationery</h3>
+                    <a href="8stestionary.html" class="btn">shop now</a>
+                </center>
+            </div>
+
+            <div class="box">
+                <center>
+                    <img src="image/snack-cat9.webp">
+                    <h3>snacks</h3>
+                    <a href="9snacks.html" class="btn">shop now</a>
+                </center>
+            </div>
+
+            <div class="box">
+                <center>
+                    <img src="image/cat10.webp">
+                    <h3>direct from farm</h3>
+                    <a href="10fromfarm.html" class="btn">shop now</a>
+                </center>
+            </div>
+
+
+        </div>
+    </section>
+    <!--Categories section--> 
+
+    <!--review section--> 
+    <section class="review" id="review">
+        <h1 class="heading">customer's <span>review</span></h1>
+        <div class="swiper review-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <p>Great quality products and fast delivery!</p>
+                    <h3>John Doe</h3>
+                </div>
+
+                <div class="swiper-slide box">
+                    <p>Best prices and excellent customer service</p>
+                    <h3>Jane Smith</h3>
+                </div>
+
+                <div class="swiper-slide box">
+                    <p>Fresh products every time I order</p>
+                    <h3>Mike Johnson</h3>
+                </div>
+
+                <div class="swiper-slide box">
+                    <p>Convenient shopping experience</p>
+                    <h3>Sarah Williams</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--review section--> 
+
+    <!--footer section--> 
+    <section class="footer" id="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>groco<i class="fa fa-shopping-basket"></i></h3>
+                <p>Your one-stop shop for all grocery needs</p>
+                <div class="share">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact information</h3>
+                <a href="#" class="links"><i class="fa fa-phone"></i>39626559560</a>
+                <a href="#" class="links"><i class="fa fa-envelope"></i>ak@gmail.com</a>
+                <a href="#" class="links"><i class="fa fa-map-marker"></i>sangli</a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#home" class="links"><i class="fa fa-arrow-right"></i>home</a>
+                <a href="#features" class="links"><i class="fa fa-arrow-right"></i>features</a>
+                <a href="#products" class="links"><i class="fa fa-arrow-right"></i>product</a>
+                <a href="#categories" class="links"><i class="fa fa-arrow-right"></i>categories</a>
+                <a href="#review" class="links"><i class="fa fa-arrow-right"></i>review</a>
+            </div>
+        </div>
+    </section>
+    <!--footer section--> 
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Supabase Client Setup -->
+    <script src="js/supabaseClient.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Popup functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupOverlay = document.getElementById('popupOverlay');
+            const closePopup = document.querySelector('.close-popup');
+            const readMoreButtons = document.querySelectorAll('.read-more');
+
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const title = this.getAttribute('data-title');
+                    const description = this.getAttribute('data-description');
+                    
+                    document.getElementById('popupTitle').textContent = title;
+                    document.getElementById('popupDescription').textContent = description;
+                    
+                    popupOverlay.style.display = 'flex';
+                });
+            });
+
+            closePopup.addEventListener('click', function() {
+                popupOverlay.style.display = 'none';
+            });
+
+            popupOverlay.addEventListener('click', function(e) {
+                if (e.target === popupOverlay) {
+                    popupOverlay.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
