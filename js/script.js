@@ -55,6 +55,7 @@ async function checkAuthSession() {
         const { data: { session }, error } = await supabaseClient.auth.getSession();
         if (error) throw error;
         currentUser = session ? session.user : null;
+        console.log("currentUser on page load:", currentUser);
         updateAuthUI();
         await syncCartAndRender();
     } catch (err) {
@@ -212,7 +213,10 @@ async function addToCart(name, price, img) {
                     .from('cart_items')
                     .update({ quantity: existing.quantity + 1 })
                     .eq('id', existing.id);
-                if (updateErr) throw updateErr;
+                if (updateErr) {
+                    console.error("Supabase update error:", updateErr);
+                    throw updateErr;
+                }
             } else {
                 const { error: insertErr } = await supabaseClient
                     .from('cart_items')
@@ -223,7 +227,10 @@ async function addToCart(name, price, img) {
                         image_url: img,
                         quantity: 1
                     });
-                if (insertErr) throw insertErr;
+                if (insertErr) {
+                    console.error("Supabase insert error:", insertErr);
+                    throw insertErr;
+                }
             }
             alert(`${name} added to database cart!`);
             await syncCartAndRender();
