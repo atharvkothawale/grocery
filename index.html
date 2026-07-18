@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GROCERY STORE</title>
+    <link rel="icon" type="image/png" href="image/favicon.PNG">
     <!--Code for Font awesome cdn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Code for Font awesome cdn-->
@@ -20,21 +21,11 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 </head>
 <body>
-    <!-- Popup Structure -->
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-content">
-            <span class="close-popup">&times;</span>
-            <h2 id="popupTitle">Feature Details</h2>
-            <div id="popupDescription"></div>
-        </div>
-    </div>
-
     <!--Header Section-->
     <header class="header">
         <a href="#" class="logo"><i class="fa fa-shopping-basket"></i>grocery</a>
         <nav class="navbar">
             <a href="#home">home</a>
-            <a href="#features">features</a>
             <a href="#products">products</a>
             <a href="#categories">categories</a>
             <a href="#review">review</a>
@@ -75,33 +66,7 @@
     </section>
     <!--banner section-->
 
-    <!--feature section-->
-    <section class="features" id="features">
-        <h1 class="heading">our <span>features</span></h1>
-        <div class="box-container">
-            <div class="box">
-                <img src="image/feature-img-1.png">
-                <h3>Fresh product</h3>
-                <p>we will provide the fresh product to you</p>
-                <a href="#" class="btn read-more" data-title="Fresh Products" data-description="We source our products directly from local farmers and trusted suppliers to ensure maximum freshness. Our quality control team checks each product before it reaches our shelves. We guarantee that all our products are fresh and of the highest quality.">read more</a>
-            </div>
-   
-            <div class="box">
-                <img src="image/feature-img-2.png">
-                <h3>home delivery avilable</h3>
-                <p>we will provide home delivery ant minimal cost or free</p>
-                <a href="#" class="btn read-more" data-title="Home Delivery" data-description="Enjoy the convenience of home delivery with our fast and reliable service. We offer free delivery on orders above Rs. 500. Our delivery team ensures your products reach you fresh and on time. Delivery slots are available throughout the day.">read more</a>
-            </div>
-   
-            <div class="box">
-                <img src="image/feature-img-3.png">
-                <h3>easy payment</h3>
-                <p>we have easy payment options</p>
-                <a href="#" class="btn read-more" data-title="Easy Payment" data-description="We accept multiple payment methods including cash on delivery, credit/debit cards, UPI, and digital wallets. Our secure payment gateway ensures your transactions are safe. You can also save your payment details for faster checkout.">read more</a>
-            </div>
-        </div>
-    </section>
-    <!--feature section-->
+
 
     <!--product section--> 
     <section class="products" id="products">
@@ -265,7 +230,6 @@
             <div class="box">
                 <h3>quick links</h3>
                 <a href="#home" class="links"><i class="fa fa-arrow-right"></i>home</a>
-                <a href="#features" class="links"><i class="fa fa-arrow-right"></i>features</a>
                 <a href="#products" class="links"><i class="fa fa-arrow-right"></i>product</a>
                 <a href="#categories" class="links"><i class="fa fa-arrow-right"></i>categories</a>
                 <a href="#review" class="links"><i class="fa fa-arrow-right"></i>review</a>
@@ -280,36 +244,5 @@
     <!-- Supabase Client Setup -->
     <script src="js/supabaseClient.js"></script>
     <script src="js/script.js"></script>
-    <script>
-        // Popup functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const popupOverlay = document.getElementById('popupOverlay');
-            const closePopup = document.querySelector('.close-popup');
-            const readMoreButtons = document.querySelectorAll('.read-more');
-
-            readMoreButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const title = this.getAttribute('data-title');
-                    const description = this.getAttribute('data-description');
-                    
-                    document.getElementById('popupTitle').textContent = title;
-                    document.getElementById('popupDescription').textContent = description;
-                    
-                    popupOverlay.style.display = 'flex';
-                });
-            });
-
-            closePopup.addEventListener('click', function() {
-                popupOverlay.style.display = 'none';
-            });
-
-            popupOverlay.addEventListener('click', function(e) {
-                if (e.target === popupOverlay) {
-                    popupOverlay.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
