@@ -57,6 +57,7 @@ async function checkAuthSession() {
         currentUser = session ? session.user : null;
         console.log("currentUser on page load:", currentUser);
         updateAuthUI();
+        updateReviewFormVisibility();
         await syncCartAndRender();
     } catch (err) {
         console.error("Error checking auth session:", err);
@@ -67,6 +68,7 @@ async function checkAuthSession() {
 supabaseClient.auth.onAuthStateChange(async (event, session) => {
     currentUser = session ? session.user : null;
     updateAuthUI();
+    updateReviewFormVisibility();
     if (event === 'SIGNED_IN') {
         await mergeLocalCartToSupabase();
     }
@@ -522,11 +524,179 @@ function initializeSwiper() {
 }
 
 // ----------------------------------------------------
+// Customer Reviews Logic (Supabase Driven)
+// ----------------------------------------------------
+let reviewSwiper = null;
+
+async function fetchAndRenderReviews() {
+    const reviewsContainer = document.querySelector('#reviews-container');
+    if (!reviewsContainer) return; // Not on the page with reviews slider (index.html)
+
+    reviewsContainer.innerHTML = '<div style="font-size: 1.8rem; text-align: center; width: 100%; padding: 2rem; color: var(--light-color);">Loading reviews...</div>';
+
+    try {
+        const { data: reviewsList, error } = await supabaseClient
+            .from('reviews')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (!reviewsList || reviewsList.length === 0) {
+            reviewsContainer.innerHTML = '<div style="font-size: 1.8rem; text-align: center; width: 100%; padding: 2rem; color: var(--light-color);">No reviews yet. Be the first to leave one!</div>';
+            return;
+        }
+
+        let html = '';
+        reviewsList.forEach(review => {
+            let ratingHtml = '';
+            if (review.rating && review.rating >= 1 && review.rating <= 5) {
+                ratingHtml = `<div class="stars" style="color: var(--terracotta); font-size: 1.4rem; padding-bottom: 0.5rem;">${'<i class="fa fa-star"></i>'.repeat(review.rating)}</div>`;
+            }
+            
+            html += `
+            <div class="swiper-slide box">
+                <p>${review.review_text}</p>
+                <h3>${review.name}</h3>
+                ${ratingHtml}
+            </div>`;
+        });
+
+        reviewsContainer.innerHTML = html;
+
+        // Setup review slider
+        if (reviewSwiper) {
+            reviewSwiper.destroy(true, true);
+        }
+        
+        // Loop should only be enabled if we have at least 3 slides, to avoid Swiper bugs
+        const shouldLoop = reviewsList.length >= 3;
+
+        reviewSwiper = new Swiper(".review-slider", {
+            loop: shouldLoop,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+              640: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1020: {
+                slidesPerView: 3,
+              },
+            },
+        });
+
+    } catch (err) {
+        console.error("Error loading reviews from database:", err);
+        reviewsContainer.innerHTML = `<div style="font-size: 1.8rem; text-align: center; width: 100%; padding: 2rem; color: var(--terracotta);">Could not load reviews.</div>`;
+    }
+}
+
+function updateReviewFormVisibility() {
+    const formContainer = document.getElementById('review-form-container');
+    if (!formContainer) return;
+
+    if (currentUser) {
+        formContainer.style.display = 'block';
+        // Prefill name from user profile metadata or email prefix if not already filled
+        const nameInput = document.getElementById('review-name');
+        if (nameInput && !nameInput.value) {
+            const prefilledName = currentUser.user_metadata?.full_name || currentUser.email.split('@')[0];
+            nameInput.value = prefilledName;
+        }
+    } else {
+        formContainer.style.display = 'none';
+    }
+}
+
+// Bind review stars click interaction
+function setupReviewStarsInteraction() {
+    const starBtns = document.querySelectorAll('.star-rating .star-btn');
+    const ratingInput = document.querySelector('#review-rating');
+    if (!starBtns.length || !ratingInput) return;
+
+    starBtns.forEach(btn => {
+        btn.onclick = () => {
+            const rating = btn.getAttribute('data-value');
+            ratingInput.value = rating;
+            starBtns.forEach(star => {
+                const starValue = star.getAttribute('data-value');
+                if (starValue <= rating) {
+                    star.style.color = 'var(--terracotta)';
+                } else {
+                    star.style.color = '#ccc';
+                }
+            });
+        };
+    });
+}
+
+// Bind review form submit
+function setupReviewFormSubmit() {
+    const reviewForm = document.getElementById('add-review-form');
+    if (!reviewForm) return;
+
+    reviewForm.onsubmit = async (e) => {
+        e.preventDefault();
+
+        const nameVal = document.getElementById('review-name').value.trim();
+        const textVal = document.getElementById('review-text').value.trim();
+        const ratingVal = document.getElementById('review-rating').value;
+
+        if (!nameVal || !textVal) {
+            alert("Please fill in your name and review text.");
+            return;
+        }
+
+        try {
+            const { error } = await supabaseClient
+                .from('reviews')
+                .insert({
+                    user_id: currentUser ? currentUser.id : null,
+                    name: nameVal,
+                    review_text: textVal,
+                    rating: ratingVal ? parseInt(ratingVal) : null
+                });
+
+            if (error) throw error;
+
+            alert("Thank you! Your review has been submitted successfully.");
+            
+            // Reset form fields
+            reviewForm.reset();
+            const ratingInput = document.getElementById('review-rating');
+            if (ratingInput) ratingInput.value = '';
+            
+            const starBtns = document.querySelectorAll('.star-rating .star-btn');
+            starBtns.forEach(star => {
+                star.style.color = '#ccc';
+            });
+
+            // Reload reviews to show the new review
+            await fetchAndRenderReviews();
+
+        } catch (err) {
+            console.error("Error submitting review:", err);
+            alert("Failed to submit your review. Please try again.");
+        }
+    };
+}
+
+// ----------------------------------------------------
 // Page Initializers
 // ----------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     checkAuthSession();
     fetchAndRenderProducts();
+    fetchAndRenderReviews();
+    setupReviewStarsInteraction();
+    setupReviewFormSubmit();
 });
 
 // ----------------------------------------------------

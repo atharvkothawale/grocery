@@ -207,27 +207,36 @@
     <section class="review" id="review">
         <h1 class="heading">customer's <span>review</span></h1>
         <div class="swiper review-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide box">
-                    <p>Great quality products and fast delivery!</p>
-                    <h3>John Doe</h3>
-                </div>
-
-                <div class="swiper-slide box">
-                    <p>Best prices and excellent customer service</p>
-                    <h3>Jane Smith</h3>
-                </div>
-
-                <div class="swiper-slide box">
-                    <p>Fresh products every time I order</p>
-                    <h3>Mike Johnson</h3>
-                </div>
-
-                <div class="swiper-slide box">
-                    <p>Convenient shopping experience</p>
-                    <h3>Sarah Williams</h3>
-                </div>
+            <div class="swiper-wrapper" id="reviews-container">
+                <!-- Reviews will be loaded dynamically from Supabase -->
             </div>
+        </div>
+
+        <!-- Leave a Review Form (Only visible to logged-in users) -->
+        <div class="review-form-container" id="review-form-container" style="display: none; max-width: 50rem; margin: 3rem auto; background: var(--white); padding: 3rem; border-radius: var(--border-radius); border: 1px solid #f0ede8; box-shadow: var(--box-shadow);">
+            <h3 style="font-family: 'Outfit', sans-serif; font-size: 2.2rem; color: var(--black); margin-bottom: 2rem; text-align: center; font-weight: 700;">leave a review</h3>
+            <form id="add-review-form">
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="font-size: 1.4rem; color: var(--black); font-weight: 600; display: block; margin-bottom: .5rem; text-align: left; text-transform: capitalize;">your name</label>
+                    <input type="text" id="review-name" required style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); color: var(--black); background: #f5f3ef;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="font-size: 1.4rem; color: var(--black); font-weight: 600; display: block; margin-bottom: .5rem; text-align: left; text-transform: capitalize;">rating (optional)</label>
+                    <div class="star-rating" style="display: flex; gap: 0.8rem; font-size: 2.5rem; color: #ccc; cursor: pointer; justify-content: flex-start; padding: 0.5rem 0;">
+                        <i class="fa fa-star star-btn" data-value="1"></i>
+                        <i class="fa fa-star star-btn" data-value="2"></i>
+                        <i class="fa fa-star star-btn" data-value="3"></i>
+                        <i class="fa fa-star star-btn" data-value="4"></i>
+                        <i class="fa fa-star star-btn" data-value="5"></i>
+                    </div>
+                    <input type="hidden" id="review-rating" value="">
+                </div>
+                <div class="form-group" style="margin-bottom: 2rem;">
+                    <label style="font-size: 1.4rem; color: var(--black); font-weight: 600; display: block; margin-bottom: .5rem; text-align: left; text-transform: capitalize;">your review</label>
+                    <textarea id="review-text" required rows="4" style="width: 100%; padding: 1.2rem; font-size: 1.4rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); color: var(--black); background: #f5f3ef; resize: vertical;"></textarea>
+                </div>
+                <input type="submit" value="submit review" class="btn" style="width: 100%; margin-top: 0;">
+            </form>
         </div>
     </section>
     <!--review section--> 
